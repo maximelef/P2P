@@ -20,7 +20,7 @@ public class ServeurUDP {
 			// extraction des données
 			String chaine = new String(dgram.getData(), 0, dgram.getLength());
 			
-			System.out.println("Chaine reçue : "+chaine);
+			System.out.println("Chaine reçue : "+ chaine);
 			
 			// on renvoie le message au client
 			socket.send(dgram);

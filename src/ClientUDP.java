@@ -9,8 +9,8 @@ public class ClientUDP {
 		// Création d'un socket UDP sur un port choisi par le système
 		DatagramSocket socket = new DatagramSocket();
 		
-		// tampon pour recevoir les données des datagrammes UDP
-		final byte[] tampon = new byte[1024];
+		// tampon pour recevoir les données des datagrammes UDP, ici on prend 4Ko
+		final byte[] tampon = new byte[4096];
 		
 		// objet Java permettant de recevoir un datagramme UDP
 		DatagramPacket reception = new DatagramPacket(tampon, tampon.length);
