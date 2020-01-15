@@ -5,6 +5,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ServeurTCP {
+	/**
+	 * @param args
+	 * @throws Exception
+	 */
 	public static void main(String args[]) throws Exception {	
 		
 		// Création d'un socket serveur générique sur le port 40000

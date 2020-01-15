@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class ClientTCP {
 	public static void main(String args[]) throws Exception {
 		// Création d'un socket client et connexion avec un serveur fonctionnant sur la même machine et sur le port 40000
-		Socket sc = new Socket("localhost", 40000);
+		Socket sc = new Socket("localhost", 12345);
 		
 		// Construction d'un BufferedReader pour lire du texte envoyé à travers la connexion socket
 		BufferedReader entreeSocket = new BufferedReader(new InputStreamReader(sc.getInputStream()));
