@@ -41,15 +41,18 @@ public class Connexion {
 			if (chaine != null) {
 				// On récupère la commande de la requete
 				String cmdRequete = this.recupererCmd(chaine);
-				
 				// Selon la commande on crée l'objet correspondant 
 				switch (cmdRequete)
 				{
-					case "LISTE":
-						this.requete = new RequeteListe ("Test");
+					case "LIST":
+						
+						this.requete = new RequeteListe ();
 					break;
 					case "CWD":
-						this.requete = new RequeteCWD("Test");						
+						this.requete = new RequeteCWD();						
+					break;
+					case "DWD":
+						this.requete = new RequeteDownload(this.recupererParam(chaine));						
 					break;
 					default :
 						// On renvoie une exception si la commande est inconnue
@@ -65,6 +68,11 @@ public class Connexion {
 	public String recupererCmd (String chaine) {
 		String tableau[] = chaine.split(" ");
 		return tableau[0];
+	}
+	
+	public String recupererParam (String chaine) {
+		String tableau[] = chaine.split(" ");
+		return tableau[1];
 	}
 	
 	public void fermerConnexion() {

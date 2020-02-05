@@ -5,8 +5,8 @@ public class RequeteListe implements Requete{
 		// Nom de notre repertoire 
 		private File repertoire;
 		
-		public RequeteListe (String nomRepertoire) {
-			this.repertoire = new File(nomRepertoire);
+		public RequeteListe () {
+			this.repertoire = new File(Constante.repertoire);
 		}
 		
 		@Override

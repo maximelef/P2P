@@ -9,7 +9,7 @@ public class RequeteDownload implements Requete {
 	
 	@Override
 	public String repondre() {
-		return null;
+		return "test";
 		// TODO Auto-generated method stub
 		
 	}
