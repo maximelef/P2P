@@ -1,5 +1,6 @@
 
 public interface Requete {
 
-	public void repondre();
+	public String repondre();
+	
 }

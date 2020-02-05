@@ -1,12 +1,15 @@
+import java.io.IOException;
+import java.net.Socket;
 
 public class Test {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		String chaine = "test";
-		String tab[] = chaine.split(" ");
-		
-		System.out.println(tab[0]);
+	public static void main(String[] args) throws Exception {
+		// Déclaration et initialisation des connexions 
+		Serveur serveur = new Serveur (12345);
+	
+		serveur.lancerServeur();
+		// On ferme les connexions 
+		serveur.fermerConnexion();		
 	}
 
 }

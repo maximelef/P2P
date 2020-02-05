@@ -2,12 +2,16 @@ import java.io.IOException;
 import java.net.BindException;
 
 public class Serveur {
-
-	public static void main(String[] args) {
+	
+	private Connexion connexion;
+	
+	public Serveur (int port) {
+		this.connexion = new Connexion(port);
+	}
+	
+	public void lancerServeur () throws Exception{
 		
 		try {
-			// On crée notre connexion
-			Connexion connexion = new Connexion (12345);
 			// On lance notre connexion
 			connexion.lancerConnexion();
 		} catch (BindException e) {
@@ -16,7 +20,10 @@ public class Serveur {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
-
+	
+	public void fermerConnexion ()
+	{
+		
+	}
 }
