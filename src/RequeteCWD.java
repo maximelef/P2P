@@ -5,8 +5,8 @@ public class RequeteCWD implements Requete {
 	// Nom de notre repertoire 
 	private File repertoire;
 	
-	public RequeteCWD (String nomRepertoire) {
-		this.repertoire = new File(nomRepertoire);
+	public RequeteCWD () {
+		this.repertoire = new File(Constante.repertoire);
 	}
 	
 	@Override
