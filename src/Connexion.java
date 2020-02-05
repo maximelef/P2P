@@ -6,7 +6,7 @@ import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Connexion {
+public class Connexion extends Thread{
 
 	// Le port d'ouverture de la connexion
 	private int port;
@@ -52,7 +52,7 @@ public class Connexion {
 						this.requete = new RequeteCWD();						
 					break;
 					case "DWD":
-						this.requete = new RequeteDownload(this.recupererParam(chaine));						
+						this.requete = new RequeteDownload(this.recupererParam(chaine));
 					break;
 					default :
 						// On renvoie une exception si la commande est inconnue
@@ -77,6 +77,36 @@ public class Connexion {
 	
 	public void fermerConnexion() {
 		// on ferme nous aussi la connexion
+	}
+	
+	public void run () {
+		
+		// On met en place des sockets pour communiquer 
+		// Création d'un socket serveur générique sur le port 40000
+		ServerSocket socketServeur;
+		try {
+			socketServeur = new ServerSocket(this.port);
+			// On attend une connexion puis on l'accepte
+			Socket socket = socketServeur.accept();
+			
+			// Construction d'un BufferedReader pour lire du texte envoyé à travers la connexion socket
+			BufferedReader entreeSocket = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			// Construction d'un PrintStream pour envoyer du texte à travers la connexion socket
+			PrintStream sortieSocket = new PrintStream(socket.getOutputStream());
+			
+			String chaine = "";
+			
+			while(chaine != null) {
+				chaine = entreeSocket.readLine();
+				System.out.println(chaine);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+					
 	}
 	
 }

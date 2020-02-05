@@ -9,9 +9,12 @@ public class RequeteDownload implements Requete {
 	
 	@Override
 	public String repondre() {
-		return "test";
+		Connexion c = new Connexion (12355);
+		c.run();
+		return "OK "+this.fichier+" 1235";
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 }
