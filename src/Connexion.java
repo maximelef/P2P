@@ -49,7 +49,6 @@ public class Connexion extends Thread{
 				switch (cmdRequete)
 				{
 					case "LIST":
-						
 						this.requete = new RequeteListe ();
 					break;
 					case "CWD":
@@ -57,6 +56,9 @@ public class Connexion extends Thread{
 					break;
 					case "DWD":
 						this.requete = new RequeteDownload(this.recupererParam(chaine));
+					break;
+					case "UPD":
+						this.requete = new RequeteUpload(this.recupererParam(chaine), this.recupererSecondParam(chaine));
 					break;
 					default :
 						// On renvoie une exception si la commande est inconnue
@@ -77,6 +79,11 @@ public class Connexion extends Thread{
 	public String recupererParam (String chaine) {
 		String tableau[] = chaine.split(" ");
 		return tableau[1];
+	}
+	
+	public String recupererSecondParam (String chaine) {
+		String tableau[] = chaine.split(" ");
+		return tableau[2];
 	}
 	
 	public void fermerConnexion() {

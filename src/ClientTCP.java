@@ -24,9 +24,9 @@ public class ClientTCP {
 		BufferedReader entreeSocket = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
 		// Construction d'un PrintStream pour envoyer du texte à travers la connexion socket
 		PrintStream sortieSocket = new PrintStream(socket.getOutputStream());
-					
-		String chaine = "";
 		
+		String chaine = "";
+		String chaineRetour ="";
 		// Scanner sur System.in
 		Scanner scanner = new Scanner(System.in);
 		
@@ -36,10 +36,17 @@ public class ClientTCP {
 			// lecture clavier
 			chaine = scanner.nextLine();
 			sortieSocket.println(chaine); // on envoie la chaine au serveur
+			String[] cmd = chaine.split(" ");
 			
 			// lecture d'une chaine envoyée à travers la connexion socket
-			chaine = entreeSocket.readLine();
-			System.out.println("Chaine reçue : "+chaine);
+			chaineRetour = entreeSocket.readLine();
+			System.out.println("Chaine reçue : "+chaineRetour);
+			String[] retour = chaineRetour.split(" ");
+			System.out.println(cmd[0]+"---"+retour[0]);
+			if (cmd[0].compareTo("UPD") == 0 &&  retour[0].compareTo("OK") == 0) {
+				System.out.println("Lancement de l'upload");
+				this.lancerUpload(cmd[1], Integer.parseInt(cmd[2]));
+			}
 		}
 	}
 	
@@ -59,6 +66,22 @@ public class ClientTCP {
 		sortieSocket.close();
 	}
 	
+	public void lancerUpload(String fichier, int port) throws IOException {
+		// On construit le socket 
+		Socket socketUpload = new Socket ("localhost", port);
+		// On récupère la sortie
+		DataOutputStream entreeSocket = new DataOutputStream(socketUpload.getOutputStream());
+		FileInputStream file = new FileInputStream("Test/"+fichier);
+		byte[] fileContent = new byte[4096];
+		while (file.read(fileContent) != -1) {
+			entreeSocket.write(fileContent);
+			System.out.println("Données:"+fileContent);
+			//offset =+ fileContent.length;
+		}
+		System.out.println("fini");
+		file.close();
+		entreeSocket.close();
+	}
 	
 	public void fermerConnexion () throws IOException {
 		this.socket.close();
