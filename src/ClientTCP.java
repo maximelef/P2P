@@ -1,4 +1,8 @@
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
@@ -38,6 +42,22 @@ public class ClientTCP {
 			System.out.println("Chaine reçue : "+chaine);
 		}
 	}
+	
+	public void lancerDownload(String fichier) throws IOException {
+		// On récupère la sortie
+		DataInputStream sortieSocket = new DataInputStream(socket.getInputStream());
+		int retour;
+		FileInputStream file = new FileInputStream(fichier);
+		byte[] chaine = new byte[4096];
+		// On intègre le fichier petit à petit
+		while((retour = sortieSocket.read(chaine)) != 0 ) {
+			file.read(chaine);
+			System.out.println(chaine);
+		}
+		file.close();
+		sortieSocket.close();
+	}
+	
 	
 	public void fermerConnexion () throws IOException {
 		this.socket.close();
