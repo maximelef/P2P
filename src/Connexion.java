@@ -104,6 +104,7 @@ public class Connexion extends Thread{
 				System.out.println("--->"+fileContent);
 				//offset =+ fileContent.length;
 			}
+			System.out.println("fini");
 			file.close();
 			
 		} catch (IOException e) {

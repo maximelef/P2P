@@ -46,14 +46,15 @@ public class ClientTCP {
 	public void lancerDownload(String fichier) throws IOException {
 		// On récupère la sortie
 		DataInputStream sortieSocket = new DataInputStream(socket.getInputStream());
-		int retour;
-		FileInputStream file = new FileInputStream(fichier);
+		FileOutputStream file = new FileOutputStream(fichier);
 		byte[] chaine = new byte[4096];
 		// On intègre le fichier petit à petit
-		while((retour = sortieSocket.read(chaine)) != 0 ) {
-			file.read(chaine);
+		while( sortieSocket.available() > 0 ) {
+			sortieSocket.read(chaine);
+			file.write(chaine);
 			System.out.println(chaine);
 		}
+		System.out.println("fini");
 		file.close();
 		sortieSocket.close();
 	}
