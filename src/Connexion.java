@@ -1,5 +1,9 @@
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
@@ -89,23 +93,24 @@ public class Connexion extends Thread{
 			// On attend une connexion puis on l'accepte
 			Socket socket = socketServeur.accept();
 			
-			// Construction d'un BufferedReader pour lire du texte envoyé à travers la connexion socket
-			BufferedReader entreeSocket = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			// Construction d'un PrintStream pour envoyer du texte à travers la connexion socket
-			PrintStream sortieSocket = new PrintStream(socket.getOutputStream());
-			
-			String chaine = "";
-			
-			while(chaine != null) {
-				chaine = entreeSocket.readLine();
-				System.out.println(chaine);
+			DataOutputStream entreeSocket = new DataOutputStream(socket.getOutputStream());
+			byte chaine[]; 
+			int retour;
+			FileInputStream file = new FileInputStream("Test/SuperTest");
+			byte[] fileContent = new byte[4096];
+			int offset = 0;
+			while (file.read(fileContent) != -1) {
+				entreeSocket.write(fileContent);
+				System.out.println("--->"+fileContent);
+				//offset =+ fileContent.length;
 			}
+			System.out.println("fini");
+			file.close();
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 					
 	}
 	
