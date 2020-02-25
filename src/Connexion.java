@@ -55,7 +55,7 @@ public class Connexion extends Thread{
 						this.requete = new RequeteCWD();						
 					break;
 					case "DWD":
-						this.requete = new RequeteDownload(this.recupererParam(chaine));
+						this.requete = new RequeteDownload(this.recupererParam(chaine), this.recupererSecondParam(chaine));
 					break;
 					case "UPD":
 						this.requete = new RequeteUpload(this.recupererParam(chaine), this.recupererSecondParam(chaine));
