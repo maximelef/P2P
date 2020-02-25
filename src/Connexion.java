@@ -90,35 +90,7 @@ public class Connexion extends Thread{
 		// on ferme nous aussi la connexion
 	}
 	
-	public void run () {
-		
-		// On met en place des sockets pour communiquer 
-		// Création d'un socket serveur générique sur le port 40000
-		ServerSocket socketServeur;
-		try {
-			socketServeur = new ServerSocket(this.port);
-			// On attend une connexion puis on l'accepte
-			Socket socket = socketServeur.accept();
-			
-			DataOutputStream entreeSocket = new DataOutputStream(socket.getOutputStream());
-			byte chaine[]; 
-			int retour;
-			FileInputStream file = new FileInputStream("Test/SuperTest");
-			byte[] fileContent = new byte[4096];
-			int offset = 0;
-			while (file.read(fileContent) != -1) {
-				entreeSocket.write(fileContent);
-				System.out.println("--->"+fileContent);
-				//offset =+ fileContent.length;
-			}
-			System.out.println("fini");
-			file.close();
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-					
-	}
+
+	
 	
 }
