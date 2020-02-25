@@ -12,7 +12,7 @@ public class RequeteUpload implements Requete {
 
 	@Override
 	public String repondre() {
-		ConnexionData c = new ConnexionData(this.nom, this.port, "Upload/");
+		ConnexionData c = new ConnexionData(this.nom, this.port, "Upload/", 0);
 		c.start();
 		return "OK "+this.nom+" "+this.port;
 	}

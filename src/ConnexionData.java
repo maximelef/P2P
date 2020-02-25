@@ -10,13 +10,15 @@ import java.net.Socket;
 public class ConnexionData  extends Thread{
 	
 	private int port;
+	private int bloc;
 	private String nom;
 	private String path;
 	
-	public ConnexionData( String nom, int port, String path) {
+	public ConnexionData( String nom, int port, String path, int bloc) {
 		this.port = port;
 		this.nom =nom;
 		this.path = path;
+		this.bloc = bloc;
 	}
 
 	public void run () {
@@ -58,7 +60,7 @@ public class ConnexionData  extends Thread{
 				System.out.println("Download");
 				DataOutputStream entreeSocket = new DataOutputStream(socket.getOutputStream());
 				System.out.println(this.path+this.nom);
-				FileInputStream file = new FileInputStream(this.path+this.nom);
+				FileInputStream file = new FileInputStream("RACINE/"+this.nom+"/"+this.nom+"."+this.bloc);
 				// On parcours tout le fichier
 				while (file.read(chaine) != -1) {
 					System.out.println("Envoi:"+chaine);
