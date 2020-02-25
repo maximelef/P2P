@@ -44,15 +44,21 @@ public class ClientTCP {
 			String[] retour = chaineRetour.split(" ");
 			System.out.println(cmd[0]+"---"+retour[0]);
 			if (cmd[0].compareTo("UPD") == 0 &&  retour[0].compareTo("OK") == 0) {
-				System.out.println("Lancement de l'upload");
+				System.out.println("Lancement du download");
 				this.lancerUpload(cmd[1], Integer.parseInt(cmd[2]));
+			}
+			if (cmd[0].compareTo("DWD") == 0 &&  retour[0].compareTo("OK") == 0) {
+				System.out.println("Lancement du download");
+				this.lancerDownload(cmd[1], Integer.parseInt(cmd[2]));
 			}
 		}
 	}
 	
-	public void lancerDownload(String fichier) throws IOException {
+	public void lancerDownload(String fichier, int port) throws IOException {
+		// On construit le socket 
+		Socket socketDownload = new Socket ("localhost", port);
 		// On récupère la sortie
-		DataInputStream sortieSocket = new DataInputStream(socket.getInputStream());
+		DataInputStream sortieSocket = new DataInputStream(socketDownload.getInputStream());
 		FileOutputStream file = new FileOutputStream(fichier);
 		byte[] chaine = new byte[4096];
 		// On intègre le fichier petit à petit
@@ -61,7 +67,7 @@ public class ClientTCP {
 			file.write(chaine);
 			System.out.println(chaine);
 		}
-		System.out.println("fini");
+		System.out.println("Terminé.");
 		file.close();
 		sortieSocket.close();
 	}
@@ -78,7 +84,7 @@ public class ClientTCP {
 			System.out.println("Données:"+fileContent);
 			//offset =+ fileContent.length;
 		}
-		System.out.println("fini");
+		System.out.println("Terminé.");
 		file.close();
 		entreeSocket.close();
 	}
