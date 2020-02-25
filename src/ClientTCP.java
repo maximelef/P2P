@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -42,9 +43,8 @@ public class ClientTCP {
 			chaineRetour = entreeSocket.readLine();
 			System.out.println("Chaine reçue : "+chaineRetour);
 			String[] retour = chaineRetour.split(" ");
-			System.out.println(cmd[0]+"---"+retour[0]);
 			if (cmd[0].compareTo("UPD") == 0 &&  retour[0].compareTo("OK") == 0) {
-				System.out.println("Lancement du download");
+				System.out.println("Lancement de l'upload");
 				this.lancerUpload(cmd[1], Integer.parseInt(cmd[2]));
 			}
 			if (cmd[0].compareTo("DWD") == 0 &&  retour[0].compareTo("OK") == 0) {
@@ -59,17 +59,21 @@ public class ClientTCP {
 		Socket socketDownload = new Socket ("localhost", port);
 		// On récupère la sortie
 		DataInputStream sortieSocket = new DataInputStream(socketDownload.getInputStream());
-		FileOutputStream file = new FileOutputStream(fichier);
+		// On crée le fichier 
+		File fileTemp = new File ("Downloaded/"+fichier);
+		fileTemp.createNewFile();
+		FileOutputStream file = new FileOutputStream("Downloaded/"+fichier);
 		byte[] chaine = new byte[4096];
+
 		// On intègre le fichier petit à petit
-		while( sortieSocket.available() > 0 ) {
-			sortieSocket.read(chaine);
+		while( sortieSocket.read(chaine)  != -1) {
 			file.write(chaine);
-			System.out.println(chaine);
+			System.out.println("Réception:"+chaine);
 		}
-		System.out.println("Terminé.");
 		file.close();
 		sortieSocket.close();
+		System.out.println("Terminé.");
+
 	}
 	
 	public void lancerUpload(String fichier, int port) throws IOException {
@@ -77,12 +81,11 @@ public class ClientTCP {
 		Socket socketUpload = new Socket ("localhost", port);
 		// On récupère la sortie
 		DataOutputStream entreeSocket = new DataOutputStream(socketUpload.getOutputStream());
-		FileInputStream file = new FileInputStream("Test/"+fichier);
+		FileInputStream file = new FileInputStream("Downloaded/"+fichier);
 		byte[] fileContent = new byte[4096];
 		while (file.read(fileContent) != -1) {
 			entreeSocket.write(fileContent);
 			System.out.println("Données:"+fileContent);
-			//offset =+ fileContent.length;
 		}
 		System.out.println("Terminé.");
 		file.close();

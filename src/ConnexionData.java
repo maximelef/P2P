@@ -27,6 +27,7 @@ public class ConnexionData  extends Thread{
 			Socket socket= socketServeur.accept();
 			byte[] chaine = new byte[4096];
 			if ( this.path.compareTo("Upload/") == 0) {
+				System.out.println("Upload");
 				DataInputStream sortieSocket = new DataInputStream(socket.getInputStream());
 				// On crée le fichier 
 				File fileTemp = new File (this.path+this.nom);
@@ -42,17 +43,21 @@ public class ConnexionData  extends Thread{
 				file.close();
 				sortieSocket.close();
 			} else {
+				System.out.println("Download");
 				DataOutputStream entreeSocket = new DataOutputStream(socket.getOutputStream());
-				FileInputStream file = new FileInputStream("Test/SuperTest");
+				System.out.println(this.path+this.nom);
+				FileInputStream file = new FileInputStream(this.path+this.nom);
 				// On parcours tout le fichier
 				while (file.read(chaine) != -1) {
+					System.out.println("Envoi:"+chaine);
 					entreeSocket.write(chaine);
-					System.out.println("Réception:"+chaine);
 				}
 				file.close();
 				entreeSocket.close();
 			}
-			System.out.println("Reception terminée.");	
+			socket.close();
+			socketServeur.close();
+			System.out.println("Terminée.");	
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
