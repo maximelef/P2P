@@ -29,18 +29,30 @@ public class ConnexionData  extends Thread{
 			if ( this.path.compareTo("Upload/") == 0) {
 				System.out.println("Upload");
 				DataInputStream sortieSocket = new DataInputStream(socket.getInputStream());
-				// On crée le fichier 
-				File fileTemp = new File (this.path+this.nom);
-				fileTemp.createNewFile();
-				FileOutputStream file = new FileOutputStream(this.path+this.nom);
-				
+				// On crée le dossier qui va nous servir à stocket le fichier splitté
+				File newFolder = new File ("RACINE/"+this.nom);
+				newFolder.mkdir();
+				int compteur =0;
 				// On intègre le fichier petit à petit
 				while( sortieSocket.available() > 0 ) {
+					compteur ++;
+					System.out.println("Traitement du bloc n°"+compteur);
 					sortieSocket.read(chaine);
+					// Pour chaque bloc on crée un fichier
+					// On crée le fichier 
+					File fileTemp = new File ("RACINE/"+this.nom+"/"+this.nom+"."+compteur);
+					fileTemp.createNewFile();
+					FileOutputStream file = new FileOutputStream("RACINE/"+this.nom+"/"+this.nom+"."+compteur);
 					file.write(chaine);
 					System.out.println("Réception:"+chaine);
+					file.close();
 				}
-				file.close();
+				// Enfin on créé un fichier avec la taille
+				File fileTemp = new File ("RACINE/"+this.nom+"/taille");
+				fileTemp.createNewFile();
+				FileOutputStream file = new FileOutputStream("RACINE/"+this.nom+"/taille");
+				// On le transforme en String puis en Bytes polur écrire
+				file.write(String.valueOf(compteur).getBytes());
 				sortieSocket.close();
 			} else {
 				System.out.println("Download");
