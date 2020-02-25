@@ -1,7 +1,7 @@
 import java.io.IOException;
 import java.net.Socket;
 
-public class Test {
+public class TestServeur {
 
 	public static void main(String[] args) throws Exception {
 		// Déclaration et initialisation des connexions 

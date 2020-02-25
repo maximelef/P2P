@@ -1,18 +1,22 @@
 
 public class RequeteDownload implements Requete {
 
-	String fichier; 
+	private String fichier; 
+	private int port;
+	private int bloc;
+
 	
-	public RequeteDownload(String fichier) {
+	public RequeteDownload(String fichier, String port, String bloc) {
 		this.fichier = fichier;
+		this.port = Integer.parseInt(port);
+		this.bloc = Integer.parseInt(bloc);
 	}
 	
 	@Override
 	public String repondre() {
-		Connexion c = new Connexion (12355);
+		ConnexionData c = new ConnexionData(this.fichier, this.port, "Download/", this.bloc);
 		c.start();
-		return "OK "+this.fichier+" 1235";
-		// TODO Auto-generated method stub
+		return "OK "+this.fichier+" "+this.port;
 		
 	}
 	

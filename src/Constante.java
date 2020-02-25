@@ -1,5 +1,5 @@
 
 public class Constante {
 
-	public static String repertoire = "Test";
+	public static String repertoire = "RACINE/";
 }
