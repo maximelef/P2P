@@ -25,7 +25,7 @@ public class RequeteSize implements Requete {
 			FileInputStream flux = new FileInputStream("RACINE/"+this.fichier+"/taille");
 			InputStreamReader lecture=new InputStreamReader(flux);
 			BufferedReader buff=new BufferedReader(lecture);
-			return "OK "+buff.readLine();
+			return buff.readLine();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -58,7 +58,7 @@ public class Connexion extends Thread{
 						this.requete = new RequeteDownload(this.recupererParam(chaine), this.recupererSecondParam(chaine),  this.recupererTroisiemeParam(chaine));
 					break;
 					case "UPD":
-						this.requete = new RequeteUpload(this.recupererParam(chaine), this.recupererSecondParam(chaine));
+						//this.requete = new RequeteUpload(this.recupererParam(chaine), this.recupererSecondParam(chaine));
 					break;
 					case "SIZ":
 						this.requete = new RequeteSize(this.recupererParam(chaine));
