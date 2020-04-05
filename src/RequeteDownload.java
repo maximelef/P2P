@@ -1,3 +1,4 @@
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -9,39 +10,32 @@ public class RequeteDownload implements Requete {
 	private String nom; 
 	private int port;
 	private int bloc;
-
+	private DataOutputStream entreeSocket;
 	
-	public RequeteDownload(String fichier, String port, String bloc) {
+	public RequeteDownload(String fichier, String bloc, DataOutputStream entreeSocket, int portManager) {
 		this.nom = fichier;
-		this.port = Integer.parseInt(port);
+		this.port = portManager;
 		this.bloc = Integer.parseInt(bloc);
+		this.entreeSocket = entreeSocket;
 	}
 	
 	@Override
 	public String repondre() {
 		try {
-			// On créé le nouveau socket pour se connecter 
-			ServerSocket serveur = new ServerSocket (this.port);
-			// On attend le client 
-			Socket socket = serveur.accept();
-			// On prend l'entrée pour envoyer les données
-			DataOutputStream entreeSocket = new DataOutputStream(socket.getOutputStream());
 			byte[] chaine = new byte[4096];
 			FileInputStream fileDwd = new FileInputStream("RACINE/"+this.nom+"/"+this.nom+"."+this.bloc);
-			// On parcours tout le fichier qui a été découpé en 1 bloc
+			// On parcourt tout le fichier qui a été découpé en 1 bloc
 			while (fileDwd.read(chaine) != -1) {
 				System.out.println("Envoi:"+chaine);
-				entreeSocket.write(chaine);
+				this.entreeSocket.write(chaine);
 			}
+			this.entreeSocket.close();
 			fileDwd.close();
-			socket.close();
-			serveur.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "OK "+this.nom;
-		
+		return "OK ";
 	}
 	
 

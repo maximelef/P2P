@@ -10,10 +10,10 @@ public class P2P {
 		
 	}
 	
-	public void lancerServeurP2P(int portServeur) {
+	public void lancerServeurP2P(int portServeur, int portManager) {
 		try {
 			// Création du serveur
-			this.serveur = new ServeurP2P (portServeur);
+			this.serveur = new ServeurP2P (portServeur, portManager);
 			// On lance le thread du serveur 
 			this.serveur.start();
 		} catch (UnknownHostException e) {

@@ -3,59 +3,32 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="RequeteCWD" project="P2P" file="/P2P/src/RequeteCWD.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="119" width="140" x="10" y="352"/>    
+    <position height="-1" width="-1" x="275" y="373"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="RequeteDownload" project="P2P" file="/P2P/src/RequeteDownload.java" binary="false" 
+  <class id="2" language="java" name="RequeteListe" project="P2P" file="/P2P/src/RequeteListe.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="119" width="165" x="190" y="352"/>    
+    <position height="-1" width="-1" x="462" y="372"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="RequeteListe" project="P2P" file="/P2P/src/RequeteListe.java" binary="false" 
+  <class id="3" language="java" name="RequeteCD" project="P2P" file="/P2P/src/RequeteCD.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="119" width="137" x="612" y="352"/>    
+    <position height="-1" width="-1" x="655" y="361"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="ClientTCP" project="P2P" file="/P2P/src/ClientTCP.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="137" width="152" x="107" y="175"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="Connexion" project="P2P" file="/P2P/src/Connexion.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="155" width="177" x="395" y="352"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="RequeteCD" project="P2P" file="/P2P/src/RequeteCD.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="101" width="117" x="789" y="352"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="7" language="java" name="Requete" project="P2P" file="/P2P/src/Requete.java" binary="false" 
+  <interface id="4" language="java" name="Requete" project="P2P" file="/P2P/src/Requete.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="83" width="117" x="395" y="547"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -64,46 +37,17 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="8" language="java" name="Serveur" project="P2P" file="/P2P/src/Serveur.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="119" width="152" x="395" y="175"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <association id="9">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="10" name="requete"/>      
-      <multiplicity id="11" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="12">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="7"/>  
-  </realization>  
-  <association id="13">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="14" name="connexion"/>      
-      <multiplicity id="15" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="16">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="7"/>  
-  </realization>  
-  <realization id="17">    
+  <realization id="5">    
     <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="7"/>  
+    <end type="TARGET" refId="4"/>  
   </realization>  
-  <realization id="18">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="7"/>  
+  <realization id="6">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="7">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
   </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
